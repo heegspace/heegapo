@@ -14,7 +14,7 @@ func newXml(conf interface{}) *aXml {
 	obj := &aXml{}
 
 	if _, ok := conf.(string); ok {
-		xmldoc, _ := tinydom.LoadDocument(strings.NewaReader(conf.(string)))
+		xmldoc, _ := tinydom.LoadDocument(strings.NewReader(conf.(string)))
 		obj.xmldoc = xmldoc
 	}
 
@@ -46,6 +46,6 @@ func (this *aXml) Get(args ...string) aReader {
 	}
 
 	return aReader{
-		Conf: xml.Text(),
+		conf: xml.Text(),
 	}
 }

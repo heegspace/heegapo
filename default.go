@@ -19,6 +19,6 @@ func newDefault(apoll agollo.Agollo) *aDefault {
 func (this *aDefault) Get(args ...string) aReader {
 	value := this.apoll.Get(args[0])
 	return aReader{
-		Conf: value,
+		conf: value,
 	}
 }

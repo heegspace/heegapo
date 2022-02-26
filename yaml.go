@@ -32,7 +32,7 @@ func (this *aYaml) Get(args ...string) aReader {
 			return aReader{}
 		}
 
-		value.Conf = temp[arg]
+		value.conf = temp[arg]
 		if k < (len(args) - 1) {
 			if _, ok := temp[arg].(map[interface{}]interface{}); !ok {
 				return aReader{}

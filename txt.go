@@ -16,6 +16,6 @@ func (this *aTxt) Get(args ...string) aReader {
 	}
 
 	var value aReader
-	value.Conf = this.conf
+	value.conf = this.conf
 	return value
 }
