@@ -16,9 +16,9 @@ func newDefault(apoll agollo.Agollo) *aDefault {
 	return obj
 }
 
-func (this *aDefault) Get(args ...string) Reader {
+func (this *aDefault) Get(args ...string) aReader {
 	value := this.apoll.Get(args[0])
-	return Reader{
+	return aReader{
 		Conf: value,
 	}
 }

@@ -14,16 +14,16 @@ func newXml(conf interface{}) *aXml {
 	obj := &aXml{}
 
 	if _, ok := conf.(string); ok {
-		xmldoc, _ := tinydom.LoadDocument(strings.NewReader(conf.(string)))
+		xmldoc, _ := tinydom.LoadDocument(strings.NewaReader(conf.(string)))
 		obj.xmldoc = xmldoc
 	}
 
 	return obj
 }
 
-func (this *aXml) Get(args ...string) Reader {
+func (this *aXml) Get(args ...string) aReader {
 	if 0 == len(args) || nil == this.xmldoc {
-		return Reader{}
+		return aReader{}
 	}
 
 	var xml tinydom.XMLElement
@@ -42,10 +42,10 @@ func (this *aXml) Get(args ...string) Reader {
 	}
 
 	if nil == xml {
-		return Reader{}
+		return aReader{}
 	}
 
-	return Reader{
+	return aReader{
 		Conf: xml.Text(),
 	}
 }

@@ -20,22 +20,22 @@ func newJson(conf interface{}) *aJson {
 	return obj
 }
 
-func (this *aJson) Get(args ...string) Reader {
+func (this *aJson) Get(args ...string) aReader {
 	if 0 == len(args) || nil == this.conf {
-		return Reader{}
+		return aReader{}
 	}
 
-	var value Reader
+	var value aReader
 	temp := this.conf
 	for k, arg := range args {
 		if _, ok := temp[arg]; !ok {
-			return Reader{}
+			return aReader{}
 		}
 
 		value.Conf = temp[arg]
 		if k < (len(args) - 1) {
 			if _, ok := temp[arg].(map[string]interface{}); !ok {
-				return Reader{}
+				return aReader{}
 			}
 
 			temp = temp[arg].(map[string]interface{})

@@ -9,7 +9,7 @@ import (
 )
 
 type Apolloer interface {
-	Get(args ...string) Reader
+	Get(args ...string) aReader
 }
 
 type ConfigType int
@@ -88,9 +88,9 @@ func (this *Apollo) configType(name string) ConfigType {
 // @param	name 	空间名
 // @param 	args 	配置key
 //
-func (this *Apollo) Config(name string, args ...string) Reader {
+func (this *Apollo) Config(name string, args ...string) aReader {
 	if 0 == len(args) {
-		return Reader{}
+		return aReader{}
 	}
 
 	this.rwlock.RLock()
@@ -98,7 +98,7 @@ func (this *Apollo) Config(name string, args ...string) Reader {
 	ctype := this.configType(name)
 	if ctype != DEFAULT_Type {
 		if _, ok := this.conf[name]; !ok {
-			return Reader{}
+			return aReader{}
 		}
 	}
 

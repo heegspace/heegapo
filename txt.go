@@ -10,12 +10,12 @@ func newTxt(conf interface{}) *aTxt {
 	return obj
 }
 
-func (this *aTxt) Get(args ...string) Reader {
+func (this *aTxt) Get(args ...string) aReader {
 	if 0 == len(args) || nil == this.conf {
-		return Reader{}
+		return aReader{}
 	}
 
-	var value Reader
+	var value aReader
 	value.Conf = this.conf
 	return value
 }

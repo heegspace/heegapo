@@ -20,22 +20,22 @@ func newYaml(conf interface{}) *aYaml {
 	return obj
 }
 
-func (this *aYaml) Get(args ...string) Reader {
+func (this *aYaml) Get(args ...string) aReader {
 	if 0 == len(args) || nil == this.conf {
-		return Reader{}
+		return aReader{}
 	}
 
-	var value Reader
+	var value aReader
 	temp := this.conf
 	for k, arg := range args {
 		if _, ok := temp[arg]; !ok {
-			return Reader{}
+			return aReader{}
 		}
 
 		value.Conf = temp[arg]
 		if k < (len(args) - 1) {
 			if _, ok := temp[arg].(map[interface{}]interface{}); !ok {
-				return Reader{}
+				return aReader{}
 			}
 
 			temp = temp[arg].(map[interface{}]interface{})
