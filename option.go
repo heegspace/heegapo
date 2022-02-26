@@ -32,7 +32,7 @@ func Appid(appid string) Option {
 	}
 }
 
-// 需要直接加载哪些空间的配置
+// 需要加载的空间名，所有要访问的空间都必须设置
 //
 // @param	nameSpace 	空间列表
 //
