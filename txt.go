@@ -5,7 +5,9 @@ type aTxt struct {
 }
 
 func newTxt(conf interface{}) *aTxt {
-	obj := &aTxt{}
+	obj := &aTxt{
+		conf: conf,
+	}
 
 	return obj
 }
