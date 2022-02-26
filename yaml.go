@@ -9,7 +9,7 @@ type aYaml struct {
 }
 
 func newYaml(conf interface{}) *aYaml {
-	obj := &Yaml{
+	obj := &aYaml{
 		conf: make(map[interface{}]interface{}),
 	}
 
