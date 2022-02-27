@@ -102,31 +102,35 @@ func (this *Apollo) Config(name string, args ...string) aReader {
 		}
 	}
 
+	var aconf Apolloer
 	switch ctype {
 	case XML_Type:
-		xml := newXml(this.conf[name])
+		aconf = newXml(this.conf[name])
 
-		return xml.Get(args...)
+		break
 	case JSON_Type:
-		json := newJson(this.conf[name])
+		aconf = newJson(this.conf[name])
 
-		return json.Get(args...)
+		break
 	case YML_Type:
-		yaml := newYaml(this.conf[name])
+		aconf = newYaml(this.conf[name])
 
-		return yaml.Get(args...)
+		break
 	case YAML_Type:
-		yaml := newYaml(this.conf[name])
+		aconf = newYaml(this.conf[name])
 
-		return yaml.Get(args...)
+		break
 	case TXT_Type:
-		txt := newTxt(this.conf[name])
+		aconf = newTxt(this.conf[name])
 
-		return txt.Get(args...)
+		break
+	default:
+		aconf = newDefault(this.apollo)
+
+		break
 	}
 
-	def := newDefault(this.apollo)
-	return def.Get(args...)
+	return aconf.Get(args...)
 }
 
 // 监听apollo配置是否发生变更
