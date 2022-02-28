@@ -38,7 +38,7 @@ func Appid(appid string) Option {
 //
 func Namespace(nameSpaces ...string) Option {
 	names := make([]string, 0)
-	for _,v := range nameSpace {
+	for _,v := range nameSpaces {
 		names = append(names, v)
 	}
 	
