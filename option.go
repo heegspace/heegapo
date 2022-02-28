@@ -36,9 +36,14 @@ func Appid(appid string) Option {
 //
 // @param	nameSpace 	空间列表
 //
-func Namespace(nameSpaces []string) Option {
+func Namespace(nameSpaces ...string) Option {
+	names := make([]string, 0)
+	for _,v := nameSpace {
+		names = append(names, v)
+	}
+	
 	return func(o *Options) {
-		o.nameSpaces = nameSpaces
+		o.nameSpaces = names
 	}
 }
 
