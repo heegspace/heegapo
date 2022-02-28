@@ -20,7 +20,7 @@ func (obj aReader) Int(def int) int {
 		return int(obj.conf.(int))
 	}
 
-	if _,ok := obj.conf.(string); !Ok {
+	if _,ok := obj.conf.(string); !ok {
 		return int(def)
 	}
 
@@ -34,10 +34,10 @@ func (obj aReader) Int(def int) int {
 
 func (obj aReader) Int64(def int64) int64 {
 	if _,ok := obj.conf.(int64); ok {
-		return int(obj.conf.(int64))
+		return int64(obj.conf.(int64))
 	}
 
-	if _,ok := obj.conf.(string); !Ok {
+	if _,ok := obj.conf.(string); !ok {
 		return int64(def)
 	}
 
