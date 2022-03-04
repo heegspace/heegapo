@@ -23,7 +23,7 @@ const (
 	TXT_Type     = ConfigType(0x005)
 )
 
-var DefaultApollo Apollo
+var DefaultApollo *Apollo
 
 type Apollo struct {
 	apollo agollo.Agollo
@@ -39,6 +39,9 @@ func NewApollo() *Apollo {
 		rwlock: sync.RWMutex{},
 	}
 
+	if nil == DefaultApollo {
+		DefaultApollo = obj
+	}
 	return obj
 }
 
