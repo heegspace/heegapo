@@ -16,15 +16,15 @@ func (obj aReader) String(def string) string {
 }
 
 func (obj aReader) Int(def int) int {
-	if _,ok := obj.conf.(int); ok {
+	if _, ok := obj.conf.(int); ok {
 		return int(obj.conf.(int))
 	}
 
-	if _,ok := obj.conf.(int64); ok {
+	if _, ok := obj.conf.(int64); ok {
 		return int(obj.conf.(int64))
 	}
 
-	if _,ok := obj.conf.(string); !ok {
+	if _, ok := obj.conf.(string); !ok {
 		return int(def)
 	}
 
@@ -37,15 +37,15 @@ func (obj aReader) Int(def int) int {
 }
 
 func (obj aReader) Int64(def int64) int64 {
-	if _,ok := obj.conf.(int); ok {
+	if _, ok := obj.conf.(int); ok {
 		return int64(obj.conf.(int))
 	}
 
-	if _,ok := obj.conf.(int64); ok {
+	if _, ok := obj.conf.(int64); ok {
 		return int64(obj.conf.(int64))
 	}
 
-	if _,ok := obj.conf.(string); !ok {
+	if _, ok := obj.conf.(string); !ok {
 		return int64(def)
 	}
 
@@ -58,27 +58,27 @@ func (obj aReader) Int64(def int64) int64 {
 }
 
 func (obj aReader) Float32(def float32) float32 {
-	if _,ok := obj.conf.(int); ok {
+	if _, ok := obj.conf.(int); ok {
 		return float32(obj.conf.(int))
 	}
 
-	if _,ok := obj.conf.(int64); ok {
+	if _, ok := obj.conf.(int64); ok {
 		return float32(obj.conf.(int64))
 	}
 
-	if _,ok := obj.conf.(float32); ok {
+	if _, ok := obj.conf.(float32); ok {
 		return float32(obj.conf.(float32))
 	}
 
-	if _,ok := obj.conf.(float64); ok {
+	if _, ok := obj.conf.(float64); ok {
 		return float32(obj.conf.(float64))
 	}
 
-	if _,ok := obj.conf.(string); !ok {
+	if _, ok := obj.conf.(string); !ok {
 		return float32(def)
 	}
 
-	value, err := strconv.ParseFloat(obj.conf.(string),32)
+	value, err := strconv.ParseFloat(obj.conf.(string), 32)
 	if nil != err {
 		return float32(def)
 	}
@@ -87,23 +87,23 @@ func (obj aReader) Float32(def float32) float32 {
 }
 
 func (obj aReader) Float64(def float64) float64 {
-	if _,ok := obj.conf.(int); ok {
+	if _, ok := obj.conf.(int); ok {
 		return float64(obj.conf.(int))
 	}
 
-	if _,ok := obj.conf.(int64); ok {
+	if _, ok := obj.conf.(int64); ok {
 		return float64(obj.conf.(int64))
 	}
-	
-	if _,ok := obj.conf.(float32); ok {
+
+	if _, ok := obj.conf.(float32); ok {
 		return float64(obj.conf.(float32))
 	}
 
-	if _,ok := obj.conf.(float64); ok {
+	if _, ok := obj.conf.(float64); ok {
 		return float64(obj.conf.(float64))
 	}
 
-	if _,ok := obj.conf.(string); !ok {
+	if _, ok := obj.conf.(string); !ok {
 		return float64(def)
 	}
 
@@ -113,4 +113,8 @@ func (obj aReader) Float64(def float64) float64 {
 	}
 
 	return value
+}
+
+func (obj aReader) Value() interface{} {
+	return obj.conf
 }
