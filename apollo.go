@@ -92,43 +92,47 @@ func (this *Apollo) configType(name string) ConfigType {
 // @param 	args 	配置key
 //
 func (this *Apollo) Config(name string, args ...string) aReader {
+	if 0 == len(args) {
+		aconf := newTxt(this.conf[name])
+
+		return aconf.Get(args...)
+	}
+
 	this.rwlock.RLock()
 	defer this.rwlock.RUnlock()
 	ctype := this.configType(name)
-	if _, ok := this.conf[name]; !ok {
-		return aReader{}
+	if ctype != DEFAULT_Type {
+		if _, ok := this.conf[name]; !ok {
+			return aReader{}
+		}
 	}
 
 	var aconf Apolloer
-	if 0 != len(args) {
-		switch ctype {
-		case XML_Type:
-			aconf = newXml(this.conf[name])
+	switch ctype {
+	case XML_Type:
+		aconf = newXml(this.conf[name])
 
-			break
-		case JSON_Type:
-			aconf = newJson(this.conf[name])
+		break
+	case JSON_Type:
+		aconf = newJson(this.conf[name])
 
-			break
-		case YML_Type:
-			aconf = newYaml(this.conf[name])
+		break
+	case YML_Type:
+		aconf = newYaml(this.conf[name])
 
-			break
-		case YAML_Type:
-			aconf = newYaml(this.conf[name])
+		break
+	case YAML_Type:
+		aconf = newYaml(this.conf[name])
 
-			break
-		case TXT_Type:
-			aconf = newTxt(this.conf[name])
-
-			break
-		default:
-			aconf = newDefault(this.apollo)
-
-			break
-		}
-	} else {
+		break
+	case TXT_Type:
 		aconf = newTxt(this.conf[name])
+
+		break
+	default:
+		aconf = newDefault(this.apollo)
+
+		break
 	}
 
 	return aconf.Get(args...)
