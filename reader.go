@@ -115,6 +115,14 @@ func (obj aReader) Float64(def float64) float64 {
 	return value
 }
 
+func (obj aReader) Bool() bool {
+	if _, ok := obj.conf.(bool); ok {
+		return obj.conf.(bool)
+	}
+
+	return false
+}
+
 func (obj aReader) Value() interface{} {
 	return obj.conf
 }
