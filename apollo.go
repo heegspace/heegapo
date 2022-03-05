@@ -106,31 +106,35 @@ func (this *Apollo) Config(name string, args ...string) aReader {
 	}
 
 	var aconf Apolloer
-	switch ctype {
-	case XML_Type:
-		aconf = newXml(this.conf[name])
+	if 0 == len(args) {
+		switch ctype {
+		case XML_Type:
+			aconf = newXml(this.conf[name])
 
-		break
-	case JSON_Type:
-		aconf = newJson(this.conf[name])
+			break
+		case JSON_Type:
+			aconf = newJson(this.conf[name])
 
-		break
-	case YML_Type:
-		aconf = newYaml(this.conf[name])
+			break
+		case YML_Type:
+			aconf = newYaml(this.conf[name])
 
-		break
-	case YAML_Type:
-		aconf = newYaml(this.conf[name])
+			break
+		case YAML_Type:
+			aconf = newYaml(this.conf[name])
 
-		break
-	case TXT_Type:
+			break
+		case TXT_Type:
+			aconf = newTxt(this.conf[name])
+
+			break
+		default:
+			aconf = newDefault(this.apollo)
+
+			break
+		}
+	} else {
 		aconf = newTxt(this.conf[name])
-
-		break
-	default:
-		aconf = newDefault(this.apollo)
-
-		break
 	}
 
 	return aconf.Get(args...)
