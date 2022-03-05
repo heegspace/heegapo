@@ -92,10 +92,6 @@ func (this *Apollo) configType(name string) ConfigType {
 // @param 	args 	配置key
 //
 func (this *Apollo) Config(name string, args ...string) aReader {
-	if 0 == len(args) {
-		return aReader{}
-	}
-
 	this.rwlock.RLock()
 	defer this.rwlock.RUnlock()
 	ctype := this.configType(name)
