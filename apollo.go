@@ -95,10 +95,8 @@ func (this *Apollo) Config(name string, args ...string) aReader {
 	this.rwlock.RLock()
 	defer this.rwlock.RUnlock()
 	ctype := this.configType(name)
-	if ctype != DEFAULT_Type {
-		if _, ok := this.conf[name]; !ok {
-			return aReader{}
-		}
+	if _, ok := this.conf[name]; !ok {
+		return aReader{}
 	}
 
 	var aconf Apolloer
