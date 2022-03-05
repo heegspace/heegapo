@@ -106,7 +106,7 @@ func (this *Apollo) Config(name string, args ...string) aReader {
 	}
 
 	var aconf Apolloer
-	if 0 == len(args) {
+	if 0 != len(args) {
 		switch ctype {
 		case XML_Type:
 			aconf = newXml(this.conf[name])
