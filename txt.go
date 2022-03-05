@@ -13,7 +13,7 @@ func newTxt(conf interface{}) *aTxt {
 }
 
 func (this *aTxt) Get(args ...string) aReader {
-	if 0 == len(args) || nil == this.conf {
+	if nil == this.conf {
 		return aReader{}
 	}
 
