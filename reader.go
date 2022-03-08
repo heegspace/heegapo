@@ -14,6 +14,22 @@ func (obj aReader) String(def string) string {
 		return def
 	}
 
+	if _, ok := obj.conf.(int); ok {
+		return fmt.Sprintf("%d", obj.conf)
+	}
+
+	if _, ok := obj.conf.(int64); ok {
+		 return fmt.Sprintf("%d", obj.conf)
+	}
+
+	if _, ok := obj.conf.(float32); ok {
+		return fmt.Sprintf("%.f", obj.conf)
+	}
+
+	if _, ok := obj.conf.(float64); ok {
+		return fmt.Sprintf("%.f", obj.conf)
+	}
+
 	return fmt.Sprintf("%v",obj.conf)
 }
 
