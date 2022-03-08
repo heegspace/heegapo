@@ -9,10 +9,11 @@ type aReader struct {
 }
 
 func (obj aReader) String(def string) string {
-	if _, ok := obj.conf.(string); ok {
-		return obj.conf.(string)
+	if nil == obj.conf {
+		return def
 	}
-	return def
+
+	return fmt.Sprintf("%v",obj.conf)
 }
 
 func (obj aReader) Int(def int) int {
